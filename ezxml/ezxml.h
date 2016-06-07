@@ -160,6 +160,14 @@ ezxml_t ezxml_insert(ezxml_t xml, ezxml_t dest, size_t off);
 // removes a tag along with all its subtags
 #define ezxml_remove(xml) ezxml_free(ezxml_cut(xml))
 
+#define dbgprint(...)\
+	do\
+	{\
+		printf("[%s][%d]", __func__, __LINE__);\
+		printf(__VA_ARGS__);\
+		printf("\n");\
+	}while(0);
+
 #ifdef __cplusplus
 }
 #endif

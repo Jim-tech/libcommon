@@ -24,7 +24,7 @@
 CC = gcc
 AR = ar
 RM = rm -f
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -O2 -g
 OBJS = ezxml.o
 LIB = libezxml.a
 TEST = ezxmltest

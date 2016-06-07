@@ -1,13 +1,5 @@
 #include "ezxml.h"
 
-#define dbgprint(...)\
-	do\
-	{\
-		printf("[%s][%d]", __func__, __LINE__);\
-		printf(__VA_ARGS__);\
-		printf("\n");\
-	}while(0);
-
 int xml_writenumber(char *ppath, char *tag, char *item, int number)
 {
 	ezxml_t  xmlroot = NULL;
@@ -40,6 +32,9 @@ int xml_writenumber(char *ppath, char *tag, char *item, int number)
 		node = ezxml_add_child_d(root, item, 0);
 	}
 
+	sprintf(sztext, "%d", number);
+	ezxml_set_txt_d(node, sztext);
+
 	xmlstr = ezxml_toxml(xmlroot);
 	if (NULL == xmlstr)
 	{
@@ -67,8 +62,25 @@ int xml_writenumber(char *ppath, char *tag, char *item, int number)
 
 int main(int argc, char *argv[])
 {
+    int i, j;
+    char sztag[32] = {0};
+    char szitem[32] = {0};
+    
 	printf("this is a test of ezxml lib \n");
 
+    for (i = 0; i < 2; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            sprintf(sztag, "tag%d", i);
+            sprintf(szitem, "item%d", j);
+
+            xml_writenumber("test.xml", sztag, szitem, 1);
+        }
+    }
+    
+
+	#if  0
 	xml_writenumber("test.xml", "tag1", "item0", 1);
 	xml_writenumber("test.xml", "tag1", "item1", 1);
 	xml_writenumber("test.xml", "tag1", "item2", 1);
@@ -76,6 +88,7 @@ int main(int argc, char *argv[])
 	xml_writenumber("test.xml", "tag2", "item0", 1);
 	xml_writenumber("test.xml", "tag2", "item1", 1);
 	xml_writenumber("test.xml", "tag2", "item2", 1);
+	#endif /* #if 0 */
 
 	return 0;
 }

@@ -1,4 +1,4 @@
-CFLAGS := -I../ezxml
+CFLAGS := -g -I../ezxml
 
 LDFLAGS := -L../ezxml -lezxml
 
